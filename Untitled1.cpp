@@ -8,12 +8,11 @@ struct Rectangle {
 int width ;
 int height ;
 } ;
-enum CommandKind { ADD, SORT, PRINT, CLEAR, EXIT, INVALID
 
-} ;
+//rectangle command
+enum CommandKind { ADD, SORT, PRINT, CLEAR, EXIT, INVALID} ;
 
-vector<Rectangle> T;
-
+//get command
 const CommandKind getCommandKind(string s){
 	if(s == "ADD")	return ADD;
 	if(s == "SORT")	return SORT;
@@ -22,19 +21,22 @@ const CommandKind getCommandKind(string s){
 	if(s == "EXIT")	return EXIT;	
 }
 
+//input Rectangle
 Rectangle getRectangle(){
 	Rectangle R;
-	cin >> R.height;//cin으로 받기 
+	cin >> R.height;
 	cin >> R.width;
 	return R;
 	
 }
 
+//sort rectangle by it's height
 bool sort_by_hieght( const Rectangle & lhs, const Rectangle & rhs )
 {
    return lhs.height < rhs.height;
 }
 
+//print all rectangle
 void print(vector<Rectangle> rectangles){
 	vector<Rectangle>::iterator iter=rectangles.begin();
 	
@@ -46,8 +48,11 @@ void print(vector<Rectangle> rectangles){
 
 }
 
+
 int main() {
 	vector<Rectangle> rectangles ;
+	
+	//getcommand modify data
 	while ( true ) {
 		string commandString;
 		cin >> commandString;
@@ -59,17 +64,10 @@ int main() {
 				break ;
 			}
 			case PRINT:
-			print(rectangles);
-
-
-
-
-			// use const_iterator in print()
-			// define and call print(const Rectangle&)
+				print(rectangles);
 				break ;
 			case SORT: {
-			sort(rectangles.begin(),rectangles.end(),sort_by_hieght) ; // define and call swap in sort()
-			//print(rectangles) ;
+			sort(rectangles.begin(),rectangles.end(),sort_by_hieght) ; 
 			break ;
 			}	
 			case CLEAR: rectangles.clear() ; break ;
@@ -78,6 +76,7 @@ int main() {
 			}
 			if ( command == EXIT ) break ;
 			}
+			
 }
 
 
